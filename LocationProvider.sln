@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationProviderWeb", "LocationProviderWeb\LocationProviderWeb.csproj", "{CA40D311-56A7-4D4C-AE53-A4955F28B13A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationProviderWeb.Tests", "LocationProviderWeb.Tests\LocationProviderWeb.Tests.csproj", "{BAC19DB7-BA44-45D7-8358-AC877AFA632D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationProviderApp", "..\Bachelor\LocationProviderApp\LocationProviderApp.csproj", "{FEE13C53-8400-498A-95E4-C24FB9187B48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationProvider.Domain", "LocationProvider.Domain\LocationProvider.Domain.csproj", "{CC0CDCA7-A6C8-41A4-BFA8-3B272BFFE68C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationProvider.DataAccess", "LocationProvider.DataAccess\LocationProvider.DataAccess.csproj", "{CD9EBC95-AB1E-4A5F-A568-BABA41F669E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA40D311-56A7-4D4C-AE53-A4955F28B13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA40D311-56A7-4D4C-AE53-A4955F28B13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA40D311-56A7-4D4C-AE53-A4955F28B13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA40D311-56A7-4D4C-AE53-A4955F28B13A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC19DB7-BA44-45D7-8358-AC877AFA632D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC19DB7-BA44-45D7-8358-AC877AFA632D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC19DB7-BA44-45D7-8358-AC877AFA632D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC19DB7-BA44-45D7-8358-AC877AFA632D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE13C53-8400-498A-95E4-C24FB9187B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE13C53-8400-498A-95E4-C24FB9187B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE13C53-8400-498A-95E4-C24FB9187B48}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FEE13C53-8400-498A-95E4-C24FB9187B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE13C53-8400-498A-95E4-C24FB9187B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE13C53-8400-498A-95E4-C24FB9187B48}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CC0CDCA7-A6C8-41A4-BFA8-3B272BFFE68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0CDCA7-A6C8-41A4-BFA8-3B272BFFE68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0CDCA7-A6C8-41A4-BFA8-3B272BFFE68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0CDCA7-A6C8-41A4-BFA8-3B272BFFE68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD9EBC95-AB1E-4A5F-A568-BABA41F669E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9EBC95-AB1E-4A5F-A568-BABA41F669E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9EBC95-AB1E-4A5F-A568-BABA41F669E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9EBC95-AB1E-4A5F-A568-BABA41F669E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

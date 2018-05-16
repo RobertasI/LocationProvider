@@ -1,0 +1,18 @@
+﻿@model List<LocationProvider.Domain.Device>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Rinkitės iš jums priklausančių įrenginių</h2>
+
+@{
+
+    foreach (var device in Model)
+    {
+        @Html.ActionLink(device.Title, "Index", "Map", new { device.Id }, null);
+        @Html.ActionLink(device.Title + "Realiu laiku", "RealTime", "Map", new { device.Id }, null);
+
+    }
+    //@Html.Action("Index", "Map", new { device.Id });
+}

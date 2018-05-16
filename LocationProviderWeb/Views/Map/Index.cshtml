@@ -1,0 +1,68 @@
+﻿@model List<LocationProvider.Domain.Location>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="map-container">
+    <div id="map">My precious map</div>
+    <div class="map-data"></div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+@*<script src="~/Scripts/map-scripts/map.js"></script>*@
+<script type="text/javascript">
+    var map;
+
+    function myMap() {
+
+        var mapOptions = {
+            center: new google.maps.LatLng(55, 25),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        traveledCorrdinates = [];
+
+        @foreach (var location in Model)
+        {
+            <text>
+            latitude = "@location.Latitude".replace(",", ".");
+            longitude = "@location.Longitude".replace(",", ".");
+            traveledCorrdinates.push({lat:Number(latitude), lng:Number(longitude)})
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+            map: map
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: "@location.TimeStamp"
+            });
+
+	        marker.addListener('click', function () {
+	        infowindow.open(map, marker);
+	        });
+            </text>
+        }
+        var traveledPath = new google.maps.Polyline({
+            path: traveledCorrdinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        traveledPath.setMap(map);
+
+    };
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALfW_XWXIjdX7QAgwXA1BQmiV7zZEOxKw&callback=myMap"
+        type="text/javascript">
+</script>
+
+@Html.ActionLink("1h", "Sort", "Map", new { Model[0].Id, time = 1 }, null);
+@Html.ActionLink("5h", "Sort", "Map", new { Model[0].Id, time = 5 }, null);
+@Html.ActionLink("12h", "Sort", "Map", new { Model[0].Id, time = 12 }, null);
+@Html.ActionLink("24h", "Sort", "Map", new { Model[0].Id, time = 24 }, null);
+@Html.ActionLink("3d", "Sort", "Map", new { Model[0].Id, time = 72 }, null);
+@Html.ActionLink("Savaitė", "Sort", "Map", new { Model[0].Id, time = 168 }, null);

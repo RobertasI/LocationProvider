@@ -1,0 +1,84 @@
+﻿@model LocationProvider.Domain.Location
+@{
+    ViewBag.Title = "RealTime";
+}
+
+<h2>RealTime</h2>
+
+<div class="map-container">
+    <div id="map">My precious map</div>
+    <div class="map-data"></div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+@*<script src="~/Scripts/map-scripts/map.js"></script>*@
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALfW_XWXIjdX7QAgwXA1BQmiV7zZEOxKw&callback=myMap"
+        type="text/javascript"></script>
+
+<script type="text/javascript">
+    let lineCoordinates = []
+
+    let latitude = "@Model.Latitude".replace(",", ".");
+    let longitude = "@Model.Longitude".replace(",", ".");
+
+    let map = false;
+    let marker = false;
+
+    function myMap() {
+        let first = { lat: Number(latitude), lng: Number(longitude) };
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: first
+        });
+
+        marker = new google.maps.Marker({
+            position: first,
+            map: map
+        });
+
+        lineCoordinates.push(marker.getPosition())
+    }
+
+    const updateMap = function (data) {
+        latitude = (data.latitude * 1);
+        longitude = (data.longitude * 1);
+
+        map.setCenter({
+            lat: latitude,
+            lng: longitude,
+            alt: 0
+        });
+
+        marker.setPosition({
+            lat: latitude,
+            lng: longitude,
+            alt: 0
+        });
+
+        lineCoordinates.push(marker.getPosition())
+
+        let lineCoordinatesPath = new google.maps.Polyline({
+            path: lineCoordinates,
+            geodesic: true,
+            map: map,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+    }
+</script>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+    const pusher = new Pusher('e3eb2284cbb62f35599f', {
+        cluster: 'eu',
+        encrypted: true
+    });
+
+    const channel = pusher.subscribe('location_channel');
+
+    channel.bind('new_location', function (data) {
+        updateMap(data);
+    });
+</script>
