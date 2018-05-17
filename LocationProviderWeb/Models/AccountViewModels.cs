@@ -49,16 +49,16 @@ namespace LocationProviderWeb.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "El. paštas")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Slaptažodis")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Prisiminti")]
         public bool RememberMe { get; set; }
     }
 
@@ -66,7 +66,7 @@ namespace LocationProviderWeb.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "El. paštas")]
         public string Email { get; set; }
 
         [Required]

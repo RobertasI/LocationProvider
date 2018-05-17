@@ -6,13 +6,13 @@
 
 <h2>Rinkitės iš jums priklausančių įrenginių</h2>
 
-@{
-
-    foreach (var device in Model)
-    {
-        @Html.ActionLink(device.Title, "Index", "Map", new { device.Id }, null);
-        @Html.ActionLink(device.Title + "Realiu laiku", "RealTime", "Map", new { device.Id }, null);
-
-    }
-    //@Html.Action("Index", "Map", new { device.Id });
-}
+<div class="panel panel-default">
+    <div class="panel-heading">Mano įrenginiai</div>
+    <div class="panel-body">
+        @foreach (var device in Model)
+        {
+            <div>@Html.ActionLink(device.Title, "Index", "Map", new { device.Id }, null)</div>
+            <div>@Html.ActionLink(device.Title + " - Realiu laiku", "RealTime", "Map", new { device.Id }, null)</div>
+        }
+    </div>
+</div>

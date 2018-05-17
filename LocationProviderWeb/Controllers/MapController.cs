@@ -18,7 +18,7 @@ namespace LocationProviderWeb.Controllers
             DeviceDataService deviceDataService = new DeviceDataService();
             var device = deviceDataService.Get(id);
             LocationDataService locationDataService = new LocationDataService();
-            var locations = locationDataService.GetAllByDevice(device);
+            var locations = locationDataService.GetAllByDevice(id);
 
             return View(locations);
         }
@@ -28,7 +28,7 @@ namespace LocationProviderWeb.Controllers
             DeviceDataService deviceDataService = new DeviceDataService();
             var device = deviceDataService.Get(id);
             LocationDataService locationDataService = new LocationDataService();
-            var locations = locationDataService.GetAllByDevice(device);
+            var locations = locationDataService.GetAllByDevice(id);
 
             List<Location> sortedList = new List<Location>();
 
@@ -54,7 +54,7 @@ namespace LocationProviderWeb.Controllers
             DeviceDataService deviceDataService = new DeviceDataService();
             var device = deviceDataService.Get(id);
             LocationDataService locationDataService = new LocationDataService();
-            var locations = locationDataService.GetAllByDevice(device);
+            var locations = locationDataService.GetAllByDevice(id);
 
             return View(locations[locations.Count - 1]);
         }
