@@ -8,11 +8,14 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">Mano įrenginiai</div>
+    <div>@Html.ActionLink("Pridėti įrenginį", "AddDevice", "Client", null, null)</div>
     <div class="panel-body">
         @foreach (var device in Model)
         {
-            <div>@Html.ActionLink(device.Title, "Index", "Map", new { device.Id }, null)</div>
-            <div>@Html.ActionLink(device.Title + " - Realiu laiku", "RealTime", "Map", new { device.Id }, null)</div>
+            <div>@Html.ActionLink(device.Title, "Index", "Map", new { id = device.DeviceId }, null)</div>
+            <div>@Html.ActionLink(device.Title + " - Realiu laiku", "RealTime", "Map", new {id = device.DeviceId }, null)</div>
+            <div>@Html.ActionLink(device.Title + " - Nustatyti ribas", "Geofence", "Map", new {id = device.DeviceId }, null)</div>
         }
     </div>
 </div>
+

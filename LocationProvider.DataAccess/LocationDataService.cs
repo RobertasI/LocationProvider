@@ -27,18 +27,6 @@ namespace LocationProvider.DataAccess
         {
             using (var context = new LocationProviderContext())
             {
-                //List<Location> relatedList = new List<Location>();
-                //var locationList = context.Location.ToList();
-
-                //foreach (var location in locationList)
-                //{
-                //    if (location.DeviceId == device.DeviceId)
-                //    {
-                //        relatedList.Add(location);
-                //    }
-                //}
-
-                //return relatedList;
 
                 return context.Location.Where(x => x.DeviceId == deviceId).ToList();
             }

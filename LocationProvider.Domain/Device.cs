@@ -4,6 +4,8 @@ namespace LocationProvider.Domain
 {
     public class Device
     {
+        public Geofence geofence;
+
         public int Id { get; set; }
 
         public int DeviceId { get; set; }
@@ -15,5 +17,7 @@ namespace LocationProvider.Domain
         public int UserId { get; set; }
 
         public User User { get; set; }
+
+        public virtual Geofence Geofence { get; set; }
     }
 }

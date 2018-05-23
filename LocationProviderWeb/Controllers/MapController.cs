@@ -1,5 +1,6 @@
 ﻿using LocationProvider.DataAccess;
 using LocationProvider.Domain;
+using LocationProviderWeb.Helpers;
 using PusherServer;
 using System;
 using System.Collections.Generic;
@@ -15,18 +16,29 @@ namespace LocationProviderWeb.Controllers
 
         public ActionResult Index(int id)
         {
-            DeviceDataService deviceDataService = new DeviceDataService();
-            var device = deviceDataService.Get(id);
+            GeofencingServices geofencingServices = new GeofencingServices();
+            geofencingServices.SendEmail("kon to");
             LocationDataService locationDataService = new LocationDataService();
             var locations = locationDataService.GetAllByDevice(id);
 
-            return View(locations);
+            if (locations.Count == 0)
+            {
+                return View("NoLocationsAvailable");
+            }
+            else
+            {
+                return View(locations);
+            }
+ 
+        }
+
+        private void SendEmail(string v, object title)
+        {
+            throw new NotImplementedException();
         }
 
         public ActionResult Sort(int id, int time)
         {
-            DeviceDataService deviceDataService = new DeviceDataService();
-            var device = deviceDataService.Get(id);
             LocationDataService locationDataService = new LocationDataService();
             var locations = locationDataService.GetAllByDevice(id);
 
@@ -51,12 +63,36 @@ namespace LocationProviderWeb.Controllers
 
         public ActionResult RealTime(int id)
         {
-            DeviceDataService deviceDataService = new DeviceDataService();
-            var device = deviceDataService.Get(id);
             LocationDataService locationDataService = new LocationDataService();
             var locations = locationDataService.GetAllByDevice(id);
 
-            return View(locations[locations.Count - 1]);
+            if (locations.Count == 0)
+            {
+                return View("NoLocationsAvailable");
+            }
+            else
+            {
+                return View(locations[locations.Count - 1]);
+            }
+
+        }
+
+        public ActionResult Geofence(int id)
+        {
+            DeviceDataService deviceDataService = new DeviceDataService();
+            var device = deviceDataService.Get(id);
+
+            return View(device);
+        }
+
+        [HttpPost]
+        public ActionResult SetGeofence(int Id, float North, float South, float East, float West)
+        {
+            GeofenceDataService geofencedataservice = new GeofenceDataService();
+
+            geofencedataservice.Update(Id, North, South, East, West);
+
+            return Json(new { newUrl = Url.Action("Index", "Client") });
         }
 
     }

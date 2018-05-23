@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Http;
 using PusherServer;
+using LocationProviderWeb.Helpers;
 
 namespace AttendanceService.WebApp.APIControllers
 {
@@ -15,42 +16,59 @@ namespace AttendanceService.WebApp.APIControllers
         [HttpPost]
         public IHttpActionResult AddLocation(LocationModel locatioModel)
         {
+
             // To call this method: http://localhost:12345/Api/LocationData/AddLocation
 
-            LocationDataService locationDataService = new LocationDataService();
+            DeviceDataService deviceDataService = new DeviceDataService();
 
-            Location location = new Location
+            var device = deviceDataService.Get(locatioModel.DeviceId); 
+
+            if (device == null)
             {
-                Longitude = locatioModel.Longitude,
-                Latitude = locatioModel.Latitude,
-                TimeStamp = locatioModel.TimeStamp,
-                DeviceId = locatioModel.DeviceId
-            };
-
-            locationDataService.Add(location);
-
-            var jsonLocation = new
+                return Json("Toks įrenginys neegzistuoja");
+            }
+            else
             {
-                latitude = locatioModel.Latitude,
-                longitude = locatioModel.Longitude
-            };
+                LocationDataService locationDataService = new LocationDataService();
 
-            var options = new PusherOptions
-            {
-                Cluster = "eu",
-                Encrypted = true
-            };
+                Location location = new Location
+                {
+                    Longitude = locatioModel.Longitude,
+                    Latitude = locatioModel.Latitude,
+                    TimeStamp = locatioModel.TimeStamp,
+                    DeviceId = locatioModel.DeviceId
+                };
 
-            var _pusher = new Pusher(
-                "526323",
-                "e3eb2284cbb62f35599f",
-                "52decc2ad70da06be4d0",
-                options);
+                locationDataService.Add(location);
+
+                var jsonLocation = new
+                {
+                    latitude = locatioModel.Latitude,
+                    longitude = locatioModel.Longitude
+                };
+
+                var options = new PusherOptions
+                {
+                    Cluster = "eu",
+                    Encrypted = true
+                };
+
+                var _pusher = new Pusher(
+                    "526323",
+                    "e3eb2284cbb62f35599f",
+                    "52decc2ad70da06be4d0",
+                    options);
 
 
-            _pusher.TriggerAsync("location_channel", "new_location", jsonLocation);
+                _pusher.TriggerAsync("location_channel", "new_location", jsonLocation);
 
-            return Json(new { status = "success", data = location });
+                GeofencingServices geofencingServices = new GeofencingServices();
+
+                geofencingServices.CheckGeofence(locatioModel.Longitude, locatioModel.Latitude, locatioModel.DeviceId);
+
+                return Json(new { status = "success", data = location });
+            }
+ 
         }
     }
 }

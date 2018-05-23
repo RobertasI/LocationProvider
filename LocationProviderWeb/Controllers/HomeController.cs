@@ -13,13 +13,13 @@ namespace LocationProviderWeb.Controllers
     {
         public ActionResult Index()
         {
-            //---------------------------------------------------------------------------
+            ////---------------------------------------------------------------------------
             //DeviceDataService ddd = new DeviceDataService();
 
             //Device device = new Device
             //{
-            //    DeviceId = 2,
-            //    Title = "Samsung S7",
+            //    DeviceId = 1,
+            //    Title = "Sony Xperia Z2",
             //    UserId = 1,
             //    Locations = new List<Location>
             //     {
@@ -31,6 +31,24 @@ namespace LocationProviderWeb.Controllers
             //        }
             //    }
             //};
+
+            ////    Devices = new List<Device>
+            ////    {
+            ////        new Device
+            ////        {
+            ////            DeviceId = 1,
+            ////            Title = "Sony Xperia Z2",
+
+            ////            Locations = new List<Location>
+            ////            {
+            ////                new Location
+            ////                {
+            ////                    Latitude = (float)54.687157,
+            ////                    Longitude = (float)25.279652,
+            ////                    TimeStamp = DateTime.Now
+            ////                }
+            ////            }
+            ////        }
             //ddd.Add(device);
 
             //---------------------------------------------------------------------------

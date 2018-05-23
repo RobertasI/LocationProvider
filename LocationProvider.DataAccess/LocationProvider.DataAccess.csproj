@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceDataService.cs" />
+    <Compile Include="GeofenceDataService.cs" />
     <Compile Include="LocationDataService.cs" />
     <Compile Include="LocationProviderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

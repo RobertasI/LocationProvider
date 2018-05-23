@@ -11,5 +11,6 @@ namespace LocationProvider.DataAccess
 
         public DbSet<User> User { get; set; }
 
+        public DbSet<Geofence> Geofence { get; set; }
     }
 }

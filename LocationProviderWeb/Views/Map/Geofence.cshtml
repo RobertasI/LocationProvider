@@ -1,0 +1,88 @@
+﻿@model LocationProvider.Domain.Device
+@{
+    ViewBag.Title = "Geofence";
+}
+
+<h2>Geofence</h2>
+
+<div class="map-container">
+    <div id="map">My precious map</div>
+    <div class="map-data"></div>
+</div>
+<a onclick="setGeofence()">Nustatyti ribas</a>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    var rectangle;
+    var map;
+    var infoWindow;
+    var bounds;
+
+    function myMap() {
+
+        var mapOptions = {
+            center: new google.maps.LatLng(54.689160, 25.279800),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+
+        bounds = {
+            north: 54.689160,
+            south: 54.685160,
+            east: 25.279800,
+            west: 25.239800
+        };
+        rectangle = new google.maps.Rectangle({
+            bounds: bounds,
+            editable: true,
+            draggable: true
+        });
+        rectangle.setMap(map);
+
+        // Add an event listener on the rectangle.
+        rectangle.addListener('bounds_changed', showNewRect);
+
+        // Define an info window on the map.
+        infoWindow = new google.maps.InfoWindow();
+      }
+      // Show the new coordinates for the rectangle in an info window.
+
+      /** @this {google.maps.Rectangle} */
+      function showNewRect(event) {
+        var ne = rectangle.getBounds().getNorthEast();
+          var sw = rectangle.getBounds().getSouthWest();
+          console.log(rectangle.bounds)
+
+        var contentString = '<b>Rectangle moved.</b><br>' +
+            'New north-east corner: ' + ne.lat() + ', ' + ne.lng() + '<br>' +
+            'New south-west corner: ' + sw.lat() + ', ' + sw.lng();
+
+        // Set the info window's content and position.
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(ne);
+
+        infoWindow.open(map);
+
+    };
+
+    function setGeofence() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SetGeofence", "Map")',
+            data: JSON.stringify({Id:@Model.DeviceId, North: bounds.north, South: bounds.south, East: bounds.east, West: bounds.west }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function (res) {
+            window.location.href = res.newUrl;
+        }).fail(function (xhr, a, error) {
+            alert('Kažkas nepavyko...');
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALfW_XWXIjdX7QAgwXA1BQmiV7zZEOxKw&callback=myMap"
+        type="text/javascript">
+</script>
+
+

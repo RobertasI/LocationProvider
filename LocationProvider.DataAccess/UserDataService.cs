@@ -15,11 +15,32 @@ namespace LocationProvider.DataAccess
             }
         }
 
+        public void AddNotExisting(string userId, User u)
+        {
+            using (var context = new LocationProviderContext())
+            {
+                var user = context.User.FirstOrDefault(a => a.UserId == userId);
+                if (user == null)
+                {
+                    context.User.AddOrUpdate(u);
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public User Get(int id)
         {
             using (var context = new LocationProviderContext())
             {
                 return context.User.FirstOrDefault(a => a.Id == id);
+            }
+        }
+
+        public User GetByUserId(string userId)
+        {
+            using (var context = new LocationProviderContext())
+            {
+                return context.User.FirstOrDefault(a => a.UserId == userId);
             }
         }
 
