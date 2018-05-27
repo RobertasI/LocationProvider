@@ -1,6 +1,5 @@
 ﻿using LocationProvider.DataAccess;
 using LocationProvider.Domain;
-using LocationProviderWeb.Helpers;
 using PusherServer;
 using System;
 using System.Collections.Generic;
@@ -16,8 +15,6 @@ namespace LocationProviderWeb.Controllers
 
         public ActionResult Index(int id)
         {
-            GeofencingServices geofencingServices = new GeofencingServices();
-            geofencingServices.SendEmail("kon to");
             LocationDataService locationDataService = new LocationDataService();
             var locations = locationDataService.GetAllByDevice(id);
 

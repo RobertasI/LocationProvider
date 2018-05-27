@@ -16,20 +16,23 @@ namespace LocationProviderWeb.Helpers
 
             var device = deviceDataService.Get(devideId);
 
-            if (latitude > device.geofence.North || latitude < device.geofence.South || longitude > device.geofence.East || longitude < device.geofence.West)
+            if (latitude > device.Geofence.North || latitude < device.Geofence.South || longitude > device.Geofence.East || longitude < device.Geofence.West)
             {
                 SendEmail(device.Title);
             }
+            return;
         }
 
         public void SendEmail(string title)
         {
-            MailMessage o = new MailMessage("ilginis.robertas@gmail.com", "robertas.ilginis@stud.vgtu.lt", "Subject", title);
-            NetworkCredential netCred = new NetworkCredential("admin@admin.lt", "admin");
-            SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
-            smtpobj.EnableSsl = true;
-            smtpobj.Credentials = netCred;
-            smtpobj.Send(o);
+            //MailMessage o = new MailMessage("ilginis.robertas@gmail.com", "robertas.ilginis@stud.vgtu.lt", "Subject", title);
+            //NetworkCredential netCred = new NetworkCredential("admin@admin.lt", "admin");
+            //SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
+            //smtpobj.EnableSsl = true;
+            //smtpobj.Credentials = netCred;
+            //smtpobj.Send(o);
+
+            //send email
         }
     }
 }

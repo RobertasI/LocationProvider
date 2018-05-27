@@ -19,7 +19,7 @@ namespace LocationProvider.DataAccess
         {
             using (var context = new LocationProviderContext())
             {
-                return context.Device.FirstOrDefault(a => a.DeviceId == id);
+                return context.Device.Include("Geofence").FirstOrDefault(a => a.DeviceId == id);
             }
         }
 
