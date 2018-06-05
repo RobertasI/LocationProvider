@@ -15,8 +15,10 @@ namespace LocationProviderWeb.Controllers
 
         public ActionResult Index(int id)
         {
+            DeviceDataService deviceDataService = new DeviceDataService();
+            var device = deviceDataService.Get(id);
             LocationDataService locationDataService = new LocationDataService();
-            var locations = locationDataService.GetAllByDevice(id);
+            var locations = locationDataService.GetAllByDevice(device.Id);
 
             if (locations.Count == 0)
             {
@@ -29,13 +31,9 @@ namespace LocationProviderWeb.Controllers
  
         }
 
-        private void SendEmail(string v, object title)
-        {
-            throw new NotImplementedException();
-        }
-
         public ActionResult Sort(int id, int time)
         {
+
             LocationDataService locationDataService = new LocationDataService();
             var locations = locationDataService.GetAllByDevice(id);
 
@@ -60,8 +58,11 @@ namespace LocationProviderWeb.Controllers
 
         public ActionResult RealTime(int id)
         {
+            DeviceDataService deviceDataService = new DeviceDataService();
+            var device = deviceDataService.Get(id);
+
             LocationDataService locationDataService = new LocationDataService();
-            var locations = locationDataService.GetAllByDevice(id);
+            var locations = locationDataService.GetAllByDevice(device.Id);
 
             if (locations.Count == 0)
             {

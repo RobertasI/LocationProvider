@@ -36,7 +36,7 @@ namespace AttendanceService.WebApp.APIControllers
                     Longitude = locatioModel.Longitude,
                     Latitude = locatioModel.Latitude,
                     TimeStamp = locatioModel.TimeStamp,
-                    DeviceId = locatioModel.DeviceId
+                    DeviceId = device.Id
                 };
 
                 locationDataService.Add(location);

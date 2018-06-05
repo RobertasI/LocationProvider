@@ -6,16 +6,24 @@
 
 <h2>Rinkitės iš jums priklausančių įrenginių</h2>
 
+<div>@Html.ActionLink("Pridėti įrenginį", "AddDevice", "Client", null, new { @class = "btn btn-primary" })</div>
+<br />
 <div class="panel panel-default">
     <div class="panel-heading">Mano įrenginiai</div>
-    <div>@Html.ActionLink("Pridėti įrenginį", "AddDevice", "Client", null, null)</div>
+
     <div class="panel-body">
-        @foreach (var device in Model)
-        {
-            <div>@Html.ActionLink(device.Title, "Index", "Map", new { id = device.DeviceId }, null)</div>
-            <div>@Html.ActionLink(device.Title + " - Realiu laiku", "RealTime", "Map", new {id = device.DeviceId }, null)</div>
-            <div>@Html.ActionLink(device.Title + " - Nustatyti ribas", "Geofence", "Map", new {id = device.DeviceId }, null)</div>
-        }
+        <table>
+            @foreach (var device in Model)
+            {
+                <tr>
+                    <td class="title-cell">@device.Title</td>
+                    <td>@Html.ActionLink("Istorija", "Index", "Map", new { id = device.DeviceId }, new { @class = "btn btn-default" })</td>
+                    <td>@Html.ActionLink("Realiu laiku", "RealTime", "Map", new { id = device.DeviceId }, new { @class = "btn btn-default" })</td>
+                    <td>@Html.ActionLink("Nustatyti ribas", "Geofence", "Map", new { id = device.DeviceId }, new { @class = "btn btn-default" })</td>
+                    <td>@Html.ActionLink("Ištrinti", "Geofence", "Map", new { id = device.DeviceId }, new { @class = "btn btn-default" })</td>
+                </tr>
+            }
+        </table>
     </div>
 </div>
 

@@ -5,12 +5,12 @@
 }
 
 <ul class="nav nav-pills map-navigation">
-    <li role="presentation">@Html.ActionLink("1h", "Sort", "Map", new { id = Model[0].DeviceId, time = 1 }, null)</li>
-    <li role="presentation">@Html.ActionLink("5h", "Sort", "Map", new { id = Model[0].DeviceId, time = 5 }, null)</li>
-    <li role="presentation">@Html.ActionLink("12h", "Sort", "Map", new { id = Model[0].DeviceId, time = 12 }, null)</li>
-    <li role="presentation">@Html.ActionLink("24h", "Sort", "Map", new { id = Model[0].DeviceId, time = 24 }, null)</li>
-    <li role="presentation">@Html.ActionLink("3d", "Sort", "Map", new { id = Model[0].DeviceId, time = 72 }, null)</li>
-    <li role="presentation">@Html.ActionLink("Savaitė", "Sort", "Map", new { id = Model[0].DeviceId, time = 168 }, null)</li>
+    <li role="presentation">@Html.ActionLink("1h", "Sort", "Map", new { id = Model[0].DeviceId, time = 1 }, new { @class = "btn btn-default" })</li>
+    <li role="presentation">@Html.ActionLink("5h", "Sort", "Map", new { id = Model[0].DeviceId, time = 5 }, new { @class = "btn btn-default" })</li>
+    <li role="presentation">@Html.ActionLink("12h", "Sort", "Map", new { id = Model[0].DeviceId, time = 12 }, new { @class = "btn btn-default" })</li>
+    <li role="presentation">@Html.ActionLink("24h", "Sort", "Map", new { id = Model[0].DeviceId, time = 24 }, new { @class = "btn btn-default" })</li>
+    <li role="presentation">@Html.ActionLink("3d", "Sort", "Map", new { id = Model[0].DeviceId, time = 72 }, new { @class = "btn btn-default" })</li>
+    <li role="presentation">@Html.ActionLink("Savaitė", "Sort", "Map", new { id = Model[0].DeviceId, time = 168 }, new { @class = "btn btn-default" })</li>
 </ul>
 
 
